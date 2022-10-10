@@ -1,0 +1,70 @@
+# trainer config
+name: "seqgan_max4_temp0.3_rl0.93"
+runner: 'trainer_seqgan_vh_sample'
+model: "graph2seq"
+cnn_encoder: "resnet_encoder"
+text_encoder: "rnn_encoder"
+graph_encoder: "graph_encoder_final_vh"
+gnn: "gcn_spectral"
+seq_decoder: "hie_rnn_decoder_base"
+log_path: 'log'
+checkpoint_path: 'save/'
+save_dir: "results/"
+
+# hyper-parameter
+vh_weight: 0.1
+temperature: 0.3
+rl_ratial: 0.93
+cons_weight: 0.5
+
+# dataset config
+train_split_dic_path: "/home/shiina/data/nips/vqa2/processed/train_split.pkl"
+val_split_dic_path: "/home/shiina/data/nips/vqa2/processed/val_split.pkl"
+test_split_dic_path: "/home/shiina/data/nips/vqa2/processed/test_split.pkl"
+vocab_path: '/home/shiina/data/nips/vqa2/processed/vqa2_vocab_unique.json'
+train_set_ratio: 1
+
+text_max_length: 20
+ppl_num: 36
+
+# training config
+batch_size: 240
+epoch_all: 500
+num_workers: 12
+pretrain_discriminator_learning_rate: 5e-4
+pretrain_generator_learning_rate: 5e-4
+discriminator_learning_rate: 2e-5
+generator_learning_rate: 2e-5
+generator_need_pretrain: false
+discriminator_need_pretrain: false
+generator_pretrain_epoch: 18
+discriminator_pretrain_epoch: 1
+start_generator_epoch: 8
+start_discriminator_epoch: 0
+
+optim_alpha: 0.9
+optim_beta: 0.999
+optim_epsilon: 1e-8
+weight_decay: 0
+lr_scheduler: "ExponentialLR"
+gamma: 0.9
+lr_decay_epoch_start: 50
+lr_decay_epoch_num: 5
+
+# model parameters
+hidden_size: 1024
+dropout: 0.2
+
+# cnn config
+cnn_out_dim: 2048
+
+# text encoder config
+encoder_style: "mean"
+word_dim: 512
+
+# gnn config
+proposal_dim: 2048
+loc_feats_dim: 300
+visual_hint_dim: 300
+topk: 15
+epsilon: 0.75
