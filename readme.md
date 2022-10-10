@@ -1,7 +1,5 @@
 # Learning to Generate Visual Questions with Noisy Supervision
 
-============
-
 
 Dependencies
 ------------
